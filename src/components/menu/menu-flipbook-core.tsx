@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MenuPage } from "@/components/menu/menu-page";
@@ -31,22 +32,22 @@ export function MenuFlipbookCore() {
     <div className="flex w-full flex-col items-center gap-4">
       <audio ref={audioRef} src="/sounds/page-flip.mp3" preload="none" />
 
-      <div className="mx-auto w-full max-w-90 sm:max-w-100 lg:max-w-115">
+      <div className="mx-auto w-full max-w-100 sm:max-w-110 lg:max-w-125">
         <HTMLFlipBook
-          width={300}
+          width={340}
           height={420}
           size="stretch"
-          minWidth={250}
+          minWidth={280}
           maxWidth={500}
-          minHeight={350}
-          maxHeight={700}
+          minHeight={346}
+          maxHeight={618}
           startPage={0}
           drawShadow
-          flippingTime={700}
+          flippingTime={900}
           usePortrait
           startZIndex={0}
           autoSize
-          maxShadowOpacity={0.5}
+          maxShadowOpacity={0.6}
           showCover
           mobileScrollSupport
           clickEventForward
@@ -59,11 +60,14 @@ export function MenuFlipbookCore() {
           ref={flipBookRef}
           onFlip={handleFlip}
         >
-          {menuPages.map((page) => (
+          {menuPages.map((page, i) => (
             <MenuPage
               key={page.id}
               page={page}
-              density={page.type === "category" ? "soft" : "hard"}
+              density={
+                i === 0 || i === menuPages.length - 1 ? "hard" : "soft"
+              }
+              priority={i === 0}
             />
           ))}
         </HTMLFlipBook>
@@ -79,8 +83,18 @@ export function MenuFlipbookCore() {
         >
           <ChevronLeft />
         </Button>
-        <span className="text-eyebrow text-subtle">
-          Page {currentPage + 1} of {menuPages.length}
+        <span className="text-eyebrow relative inline-flex min-w-24 justify-center overflow-hidden text-subtle">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={currentPage}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              Page {currentPage + 1} of {menuPages.length}
+            </motion.span>
+          </AnimatePresence>
         </span>
         <Button
           variant="outline"

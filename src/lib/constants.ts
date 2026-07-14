@@ -15,11 +15,12 @@ export const siteConfig = {
 
 // Link navigasi utama (navbar + mobile sheet).
 export const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Menu", href: "/menu" },
   { label: "Reservation", href: "/#locations" },
-  { label: "About", href: "/tentang-kami" },
-  { label: "Contact", href: "/kontak" },
-  { label: "Blog", href: "/blog" },
+  { label: "Venue & Event", href: "/reservation" },
+  // { label: "Contact", href: "/kontak" },
+  // { label: "Blog", href: "/blog" },
 ] as const;
 
 // Subset link yang tampil inline di navbar desktop (sisanya via hamburger).
@@ -47,13 +48,13 @@ export const socialLinks = [
 ] as const;
 
 export const footerLinks = [
-  { label: "Licensing", href: "/licensing" },
-  { label: "Styleguide", href: "/styleguide" },
+  // { label: "Licensing", href: "/licensing" },
+  // { label: "Styleguide", href: "/styleguide" },
 ] as const;
 
 // Kredit bar paling bawah footer.
 export const footerConfig = {
-  credit: "By Billions Coffee",
+  credit: "@ Billions Coffee 2026. All rights reserved.",
 } as const;
 
 // Slide hero (carousel fade). Set `primary: true` pada satu slide untuk
@@ -78,7 +79,7 @@ export const heroSlides = [
 ] as const;
 
 export const heroContent = {
-  title: ["SIP, SAVOR,", "AND STAY A WHILE"], // dua baris seperti desain
+  title: ["SIMPLY BILLIONS", "SIMPLY BETTER"], // dua baris seperti desain
   intervalMs: 5000,
 } as const;
 
@@ -94,27 +95,27 @@ export const aboutContent = {
 // Section "Best Of Taste" (3 kartu menu unggulan, klik -> halaman menu).
 export const bestOfTaste = [
   {
-    image: "/menu/dish1.png",
-    alt: "Signature pour-over Billions",
-    name: "Signature Pour-Over",
+    image: "/menu/dish4.jpg",
+    alt: "Billions Signature Bottle Billions",
+    name: "Billions Signature Bottle",
     description:
-      "Biji single-origin diseduh perlahan untuk rasa bersih dengan aroma floral yang khas.",
+      "Hadir untuk anda yg mengapresiasi rasa dan estetika, Signature bottle kami menawarkan berbagai macam varian rasa yang berkarakter kuat, dibuat dan disajikan dalam botol kaca sehingga mempertahankan kualitas dan rasa",
     href: "/menu",
   },
   {
-    image: "/menu/dish3.png",
-    alt: "Butter steak plate Billions",
-    name: "Butter Steak Plate",
+    image: "/menu/dish2.jpg",
+    alt: "Tenderlon Steak Billions",
+    name: "Tenderlon Steak",
     description:
-      "Steak lembut dipadukan saus mentega herbal, disajikan hangat dengan sisi musiman.",
+      "Sebuah paduan kelembutan dari potongan daging berkualifas yang dimasak sempurna untuk menghasilkan teksture lembut dan juicy dalam setiap gigitan",
     href: "/menu",
   },
   {
-    image: "/menu/dish2.png",
-    alt: "Fresh garden bowl Billions",
-    name: "Fresh Garden Bowl",
+    image: "/menu/dish5.jpg",
+    alt: "On the Tray Series Billions",
+    name: "On the Tray Series",
     description:
-      "Sajian segar berbahan sayuran pilihan, ringan namun kaya rasa untuk teman kopi.",
+      "Setiap menu signature disajikab diatas nampan kayu ekslusif, dirancang khusus agar anda dapat merasakan experience berbeda dalam setiap detail rasa dengan cara yang paling elegan",
     href: "/menu",
   },
 ] as const;
@@ -154,6 +155,8 @@ export const testimonials = [
 export type Testimonial = (typeof testimonials)[number];
 
 // Lokasi cabang Billions (klik kartu -> maps + kontak berubah).
+// gofoodUrl/grabfoodUrl sengaja opsional (boleh kosong "") — ikon Gojek/Grab
+// di section kontak cuma muncul kalau link-nya sudah diisi untuk cabang itu.
 export const locations = [
   {
     id: "kediri",
@@ -168,6 +171,8 @@ export const locations = [
     hours: "Mon – Sun: 09:00 – 22:00",
     mapsUrl: "https://maps.app.goo.gl/F2enCqWB7q12gpMz8",
     mapsQuery: "Billions+Coffee+Kediri",
+    gofoodUrl: "",
+    grabfoodUrl: "",
   },
   {
     id: "tulungagung",
@@ -182,6 +187,8 @@ export const locations = [
     hours: "Tue – Sun: 09:00 – 22:00",
     mapsUrl: "https://maps.app.goo.gl/PQDYvfnHCxjxTeTi7",
     mapsQuery: "Billions+Coffee+Tulungagung",
+    gofoodUrl: "",
+    grabfoodUrl: "",
   },
   {
     id: "madiun",
@@ -196,6 +203,8 @@ export const locations = [
     hours: "Mon – Sun: 09:00 – 22:00",
     mapsUrl: "https://maps.google.com/?q=Madiun,East+Java",
     mapsQuery: "Billions+Coffee+Madiun",
+    gofoodUrl: "",
+    grabfoodUrl: "https://food.grab.com/id/id/restaurant/billions-coffee-madiun", // TODO: ganti link Grab asli
   },
 ] as const;
 

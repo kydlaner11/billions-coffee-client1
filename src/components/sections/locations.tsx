@@ -4,9 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaWhatsapp, FaArrowRight } from "react-icons/fa6";
+import { SiGojek, SiGrab } from "react-icons/si";
 import { locations } from "@/lib/constants";
 import { fadeUp, fadeIn, staggerContainer, viewportOnce } from "@/lib/motion";
 import { SwipeHint } from "@/components/ui/swipe-hint";
+import { SocialIcons } from "@/components/layout/social-icons";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -121,9 +123,11 @@ export function Locations() {
               <h3 className="text-3xl">Billions {loc.city}</h3>
 
               <dl className="mt-8 space-y-5 text-sm">
-                <div className="border-t border-border pt-4">
+                <div className="flex items-center justify-between border-t border-border pt-4">
                   <dt className="text-eyebrow mb-1 text-subtle">Address</dt>
-                  <dd className="leading-relaxed text-muted">{loc.address}</dd>
+                  <dd className="max-w-65 leading-relaxed text-muted">
+                    {loc.address}
+                  </dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-border pt-4">
                   <dt className="text-eyebrow text-subtle">Phone</dt>
@@ -148,9 +152,9 @@ export function Locations() {
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md bg-cream px-5 py-3 text-eyebrow text-[0.7rem]! text-[#0a0908] transition-opacity hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-md bg-cream px-5 py-3 text-eyebrow text-[0.7rem]! text-[#0a0908]! transition-opacity hover:opacity-90"
                 >
-                  <FaWhatsapp className="size-4" />
+                  <FaWhatsapp className="size-4 text-[#0a0908]" />
                   Reservasi via WhatsApp
                 </a>
                 <a
@@ -163,6 +167,49 @@ export function Locations() {
                   <FaArrowRight className="size-2.5" />
                 </a>
               </div>
+
+              {/* Order via Gojek/Grab — opsional, tampil kalau link-nya sudah diisi */}
+              {(loc.gofoodUrl || loc.grabfoodUrl) && (
+                <div className="mt-6 border-t border-border pt-4">
+                  <p className="text-eyebrow mb-3 text-subtle">Order via</p>
+                  <div className="flex flex-wrap gap-3">
+                    {loc.gofoodUrl && (
+                      <motion.a
+                        href={loc.gofoodUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-3 text-eyebrow text-[0.7rem]! text-foreground transition-colors hover:border-cream/40 hover:text-cream"
+                      >
+                        <SiGojek className="size-4" />
+                        GoFood
+                      </motion.a>
+                    )}
+                    {loc.grabfoodUrl && (
+                      <motion.a
+                        href={loc.grabfoodUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-3 text-eyebrow text-[0.7rem]! text-foreground transition-colors hover:border-cream/40 hover:text-cream"
+                      >
+                        <SiGrab className="size-4" />
+                        GrabFood
+                      </motion.a>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Sosial media */}
+              {/* <div className="mt-6 flex items-center gap-3 border-t border-border pt-4">
+                <span className="text-eyebrow text-subtle">Follow Us</span>
+                <SocialIcons />
+              </div> */}
             </motion.div>
           </AnimatePresence>
         </div>

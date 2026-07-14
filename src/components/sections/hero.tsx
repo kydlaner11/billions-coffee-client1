@@ -34,27 +34,29 @@ export function Hero() {
           <motion.div
             key={slide.src}
             className="absolute inset-0"
-            animate={{ opacity: isActive ? 1 : 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            animate={{
+              opacity: isActive ? 1 : 0,
+              scale: isActive ? 1.08 : 1,
+            }}
+            transition={{
+              opacity: { duration: 1.5, ease: "easeInOut" },
+              scale: isActive
+                ? {
+                    duration: heroContent.intervalMs / 1000 + 1.5,
+                    ease: "linear",
+                  }
+                : { duration: 1.5, ease: "easeInOut" },
+            }}
             aria-hidden={isActive ? undefined : true}
           >
-            <motion.div
-              className="absolute inset-0"
-              animate={{ scale: isActive ? 1.08 : 1 }}
-              transition={{
-                duration: isActive ? heroContent.intervalMs / 1000 + 1.5 : 0,
-                ease: "linear",
-              }}
-            >
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                fill
-                priority={i === 0}
-                sizes="100vw"
-                className="object-cover"
-              />
-            </motion.div>
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className="object-cover"
+            />
           </motion.div>
         );
       })}

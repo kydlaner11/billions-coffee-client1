@@ -15,8 +15,8 @@ import { fadeIn, fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 export function Footer() {
   return (
     <footer className="border-t border-border">
-      {/* ===== Bagian atas: brand + nav + kontak ===== */}
-      <div className="mx-auto max-w-350 px-2 py-14 md:py-20">
+      {/* ===== Bagian atas: brand + nav + kontak — disembunyikan di mobile ===== */}
+      <div className="mx-auto hidden max-w-350 px-2 py-14 md:block md:py-20">
         <motion.div
           className="grid gap-10 md:grid-cols-3 md:gap-8"
           initial="hidden"
@@ -53,7 +53,7 @@ export function Footer() {
           </motion.div>
 
           {/* --- Blok 3: Kontak umum --- */}
-          <motion.div className="md:justify-self-end" variants={fadeUp}>
+          {/* <motion.div className="md:justify-self-end" variants={fadeUp}>
             <h3 className="text-eyebrow mb-4 text-subtle">Get in Touch</h3>
             <address className="space-y-2 text-sm not-italic text-muted">
               <p className="max-w-xs">{contactInfo.address}</p>
@@ -74,12 +74,12 @@ export function Footer() {
                 </a>
               </p>
             </address>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
 
       {/* ===== Bar bawah: kredit + link ===== */}
-      <div className="border-t border-border">
+      <div className="md:border-t md:border-border">
         <motion.div
           className="mx-auto flex max-w-350 flex-col items-center gap-4 px-6 py-6 text-xs text-subtle md:flex-row md:justify-center md:gap-6 md:px-10"
           initial="hidden"
@@ -88,7 +88,7 @@ export function Footer() {
           variants={fadeIn}
         >
           <span>{footerConfig.credit}</span>
-          {footerLinks.map((link) => (
+          {/* {footerLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -96,7 +96,7 @@ export function Footer() {
             >
               {link.label}
             </Link>
-          ))}
+          ))} */}
         </motion.div>
       </div>
     </footer>

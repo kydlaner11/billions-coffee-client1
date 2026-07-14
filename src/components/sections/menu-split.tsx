@@ -41,7 +41,7 @@ export function MenuSplit() {
       </div>
 
       {/* Kanan: flip-book menu interaktif */}
-      <div className="flex min-h-100 flex-col items-center justify-center gap-6 border-t border-border p-10 text-center md:min-h-125 lg:min-h-svh lg:border-t-0 lg:border-l lg:border-border">
+      <div className="flex min-h-100 flex-col items-center justify-center gap-6 border-t border-border p-6 text-center md:min-h-125 md:p-10 lg:min-h-svh lg:border-t-0 lg:border-l lg:border-border">
         <motion.div
           className="flex w-full flex-col items-center gap-6"
           initial="hidden"

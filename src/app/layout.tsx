@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Forum } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { SplashScreen } from "@/components/layout/splash-screen";
+// import { SplashScreen } from "@/components/layout/splash-screen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +40,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${forum.variable}`}
     >
       <body className="antialiased">
-        <SplashScreen />
+        {/* <SplashScreen /> */}
         <Navbar />
         {children}
         {/* <Footer /> */}

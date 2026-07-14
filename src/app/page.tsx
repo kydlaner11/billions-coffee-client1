@@ -3,7 +3,7 @@ import { About } from "@/components/sections/about";
 import { BestOfTaste } from "@/components/sections/best-of-taste";
 import { Locations } from "@/components/sections/locations";
 // import { Navbar } from "@/components/layout/navbar";
-// import { Footer } from "@/components/layout/footer";
+import { Footer } from "@/components/layout/footer";
 import { Testimonials } from "@/components/sections/testimonials";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         <Testimonials />
         <Locations />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
