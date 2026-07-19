@@ -62,7 +62,7 @@ export const footerConfig = {
 // Untuk banner event: cukup ubah primary ke slide yang diinginkan.
 export const heroSlides = [
   {
-    src: "/menu/dish4.png",
+    src: "/hero/hero-12.jpg",
     alt: "Suasana barista Billions Coffee",
     primary: true,
   },
