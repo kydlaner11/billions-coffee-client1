@@ -4,10 +4,10 @@
 export const siteConfig = {
   name: "Billions Coffee",
   shortName: "Billions",
-  tagline: "Coffee Sensation",
+  tagline: "SIMPLY BILLIONS, SIMPLY BETTER",
   description:
-    "Where culinary craftsmanship meets modern elegance. Indulge in the finest coffee sensation, expertly curated to elevate your dining experience.",
-  url: "https://billions-coffee.example.com", // TODO: ganti domain asli
+    "Sip, savor, and stay a while. Your daily dose of joy, served in every bottle",
+  url: "https://billionscoffee.co.id/", // TODO: ganti domain asli
   logo: "/logo.png",
   locale: "id_ID",
   ogImage: "/og-image.png", // TODO: siapkan gambar OG 1200x630
@@ -85,7 +85,7 @@ export const heroContent = {
 
 // Section About ("... Artistry Redefined" di desain), disesuaikan ke tema kopi.
 export const aboutContent = {
-  eyebrow: "Coffee Artistry Redefined",
+  eyebrow: "Billions Coffee",
   body:
     "Where culinary craftsmanship meets modern elegance. Indulge in the finest coffee, expertly curated to elevate your every moment.",
   image: "/hero/about1.jpg", // pakai foto hero interior yang sudah ada

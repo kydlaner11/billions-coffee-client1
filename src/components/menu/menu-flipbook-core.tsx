@@ -15,22 +15,44 @@ export function MenuFlipbookCore() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
 
+  const unlockedRef = useRef(false);
+
   const handleFlip = useCallback((e: FlipEvent) => {
     setCurrentPage(e.data);
     const el = audioRef.current;
     if (!el) return;
-    el.currentTime = 0;
-    // File suara belum tersedia sampai user menaruh public/sounds/page-flip.mp3 —
-    // .catch menelan 404/rejection supaya flip tetap jalan tanpa error.
+    try {
+      el.currentTime = 0;
+    } catch {
+      // readyState belum HAVE_METADATA — abaikan, play() di bawah tetap jalan dari awal.
+    }
     el.play().catch(() => {});
+  }, []);
+
+  // Browser modern memblokir audio.play() kalau tidak terhubung langsung ke user
+  // gesture. Event "flip" dari react-pageflip baru muncul setelah animasi flip
+  // selesai (~flippingTime ms kemudian), jadi sudah di luar jendela gesture.
+  // Unlock elemen audio sekali di gesture pertama (pointerdown) supaya play()
+  // yang terlambat di atas tetap diizinkan browser untuk sisa sesi.
+  const unlockAudio = useCallback(() => {
+    if (unlockedRef.current) return;
+    unlockedRef.current = true;
+    const el = audioRef.current;
+    if (!el) return;
+    el.play()
+      .then(() => el.pause())
+      .catch(() => {});
   }, []);
 
   const goPrev = () => flipBookRef.current?.pageFlip().flipPrev();
   const goNext = () => flipBookRef.current?.pageFlip().flipNext();
 
   return (
-    <div className="flex w-full flex-col items-center gap-4">
-      <audio ref={audioRef} src="/sounds/page-flip.mp3" preload="none" />
+    <div
+      className="flex w-full flex-col items-center gap-4"
+      onPointerDown={unlockAudio}
+    >
+      <audio ref={audioRef} src="/sounds/page-flip.mp3" preload="auto" />
 
       <div className="mx-auto w-full max-w-100 sm:max-w-110 lg:max-w-125">
         <HTMLFlipBook

@@ -154,7 +154,7 @@ export function ReservationSplit() {
             className="text-display mt-2 text-2xl text-cream md:text-3xl"
             variants={fadeUp}
           >
-            Momen yang Sudah Berlangsung
+            Momen Billions
           </motion.h2>
           <motion.p
             className="mt-4 max-w-prose text-sm leading-relaxed text-muted"
