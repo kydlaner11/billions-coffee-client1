@@ -10,7 +10,7 @@ export const siteConfig = {
   url: "https://billions-coffee.example.com", // TODO: ganti domain asli
   logo: "/logo.png",
   locale: "id_ID",
-  ogImage: "/og-image.jpg", // TODO: siapkan gambar OG 1200x630
+  ogImage: "/og-image.png", // TODO: siapkan gambar OG 1200x630
 } as const;
 
 // Link navigasi utama (navbar + mobile sheet).
@@ -54,7 +54,7 @@ export const footerLinks = [
 
 // Kredit bar paling bawah footer.
 export const footerConfig = {
-  credit: "@ Billions Coffee 2026. All rights reserved.",
+  credit: "@Billions Coffee 2026. All rights reserved.",
 } as const;
 
 // Slide hero (carousel fade). Set `primary: true` pada satu slide untuk
@@ -62,17 +62,17 @@ export const footerConfig = {
 // Untuk banner event: cukup ubah primary ke slide yang diinginkan.
 export const heroSlides = [
   {
-    src: "/hero/hero-4.png",
+    src: "/menu/dish4.png",
     alt: "Suasana barista Billions Coffee",
     primary: true,
   },
   {
-    src: "/hero/hero-5.png",
+    src: "/hero/hero-10.jpg",
     alt: "Sajian kopi Billions Coffee",
     primary: false,
   },
   {
-    src: "/hero/hero-6.png",
+    src: "/hero/hero-11.jpg",
     alt: "Interior kedai Billions Coffee",
     primary: false,
   },
@@ -88,7 +88,7 @@ export const aboutContent = {
   eyebrow: "Coffee Artistry Redefined",
   body:
     "Where culinary craftsmanship meets modern elegance. Indulge in the finest coffee, expertly curated to elevate your every moment.",
-  image: "/hero/hero-3.png", // pakai foto hero interior yang sudah ada
+  image: "/hero/about1.jpg", // pakai foto hero interior yang sudah ada
   imageAlt: "Interior kedai Billions Coffee",
 } as const;
 
@@ -164,15 +164,22 @@ export const locations = [
     image: "/locations/kediri.jpg",
     address:
       "Jl. Hasanudin No.14, Balowerti, Kec. Kota, Kota Kediri, Jawa Timur 64121",
+    addressRegion: "Jawa Timur",
+    postalCode: "64121",
     phone: "+6282332563676",
     phoneDisplay: "0823 3256 3676",
     waNumber: "6282332563676",
     waMsg: "Halo Billions Kediri, saya ingin bertanya dan reservasi.",
     hours: "Mon – Sun: 09:00 – 22:00",
+    openingHours: {
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "09:00",
+      closes: "22:00",
+    },
     mapsUrl: "https://maps.app.goo.gl/F2enCqWB7q12gpMz8",
     mapsQuery: "Billions+Coffee+Kediri",
-    gofoodUrl: "",
-    grabfoodUrl: "",
+    gofoodUrl: "https://gofood.link/a/KvfvZ2J",
+    grabfoodUrl: "https://r.grab.com/g/6-20260718_165725_E067549D29184FD0A3DE5FDFBA716CC9_MEXMPS-6-C7TKJ73UN3UBEX",
   },
   {
     id: "tulungagung",
@@ -180,15 +187,22 @@ export const locations = [
     image: "/locations/tulungagung-1.jpg",
     address:
       "Jl. Dr. Sutomo No.33, Tertek, Kec. Tulungagung, Tulungagung, Jawa Timur 66216",
+    addressRegion: "Jawa Timur",
+    postalCode: "66216",
     phone: "+6281246780540",
     phoneDisplay: "0812 4678 0540",
     waNumber: "6281246780540",
     waMsg: "Halo Billions Tulungagung, saya ingin bertanya dan reservasi.",
     hours: "Tue – Sun: 09:00 – 22:00",
+    openingHours: {
+      days: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "09:00",
+      closes: "22:00",
+    },
     mapsUrl: "https://maps.app.goo.gl/PQDYvfnHCxjxTeTi7",
     mapsQuery: "Billions+Coffee+Tulungagung",
-    gofoodUrl: "",
-    grabfoodUrl: "",
+    gofoodUrl: "⁠https://gofood.link/a/QyBcLZJ",
+    grabfoodUrl: "https://r.grab.com/g/6-20260718_165822_E067549D29184FD0A3DE5FDFBA716CC9_MEXMPS-6-C7JUBCAEV8LCTE",
   },
   {
     id: "madiun",
@@ -196,15 +210,22 @@ export const locations = [
     image: "/locations/madiun-1.jpg",
     address:
       "Jl. Abdurrahman Saleh, Kejuron, Kec. Taman, Kota Madiun, Jawa Timur 63131",
+    addressRegion: "Jawa Timur",
+    postalCode: "63131",
     phone: "+6282322525405",
     phoneDisplay: "0823 2252 5405",
     waNumber: "6282322525405",
     waMsg: "Halo Billions Madiun, saya ingin bertanya dan reservasi.",
     hours: "Mon – Sun: 09:00 – 22:00",
+    openingHours: {
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "09:00",
+      closes: "22:00",
+    },
     mapsUrl: "https://maps.google.com/?q=Madiun,East+Java",
     mapsQuery: "Billions+Coffee+Madiun",
     gofoodUrl: "",
-    grabfoodUrl: "https://food.grab.com/id/id/restaurant/billions-coffee-madiun", // TODO: ganti link Grab asli
+    grabfoodUrl: "", // TODO: ganti link Grab asli
   },
 ] as const;
 

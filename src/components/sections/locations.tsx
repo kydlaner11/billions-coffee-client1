@@ -9,6 +9,7 @@ import { locations } from "@/lib/constants";
 import { fadeUp, fadeIn, staggerContainer, viewportOnce } from "@/lib/motion";
 import { SwipeHint } from "@/components/ui/swipe-hint";
 import { SocialIcons } from "@/components/layout/social-icons";
+import { cafeSchema } from "@/lib/schema";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -39,6 +40,14 @@ export function Locations() {
 
   return (
     <section id="locations" className="mx-auto max-w-350 px-2 pb-16 md:pb-24">
+      {locations.map((item) => (
+        <script
+          key={item.id}
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(cafeSchema(item)) }}
+        />
+      ))}
       <SectionHeading>BILLIONS LOCATIONS</SectionHeading>
 
       {/* Kartu foto cabang — slide horizontal di mobile, grid di desktop */}
@@ -125,7 +134,7 @@ export function Locations() {
               <dl className="mt-8 space-y-5 text-sm">
                 <div className="flex items-center justify-between border-t border-border pt-4">
                   <dt className="text-eyebrow mb-1 text-subtle">Address</dt>
-                  <dd className="max-w-65 leading-relaxed text-muted">
+                  <dd className="max-w-40 text-right leading-relaxed text-muted md:max-w-65">
                     {loc.address}
                   </dd>
                 </div>

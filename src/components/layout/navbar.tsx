@@ -80,8 +80,18 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
-        <motion.div variants={fadeUp}>
+        {/* CTA — mobile tampilkan "Menu", desktop tampilkan CTA venue & event */}
+        <motion.div variants={fadeUp} className="md:hidden">
+          <Button
+            variant="outline"
+            render={<Link href="/menu" />}
+            nativeButton={false}
+            className="text-eyebrow ml-1 rounded-lg border-border bg-transparent"
+          >
+            Menu
+          </Button>
+        </motion.div>
+        <motion.div variants={fadeUp} className="hidden md:block">
           <Button
             variant="outline"
             render={<Link href={ctaLink.href} />}

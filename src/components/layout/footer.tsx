@@ -83,8 +83,7 @@ export function Footer() {
         <motion.div
           className="mx-auto flex max-w-350 flex-col items-center gap-4 px-6 py-6 text-xs text-subtle md:flex-row md:justify-center md:gap-6 md:px-10"
           initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
+          animate="visible"
           variants={fadeIn}
         >
           <span>{footerConfig.credit}</span>

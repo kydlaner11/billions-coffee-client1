@@ -12,18 +12,23 @@ const heroImage = {
   alt: "Lantai 2 Billions Coffee untuk event",
 };
 
-const eventPhotos = [
-  { src: "/locations/madiun.jpg", alt: "Dokumentasi lantai 2 Billions Madiun" },
-  { src: "/locations/madiun-1.jpg", alt: "Dokumentasi lantai 2 Billions Madiun" },
-  {
-    src: "/locations/tulungagung.jpg",
-    alt: "Dokumentasi lantai 2 Billions Tulungagung",
-  },
-  {
-    src: "/locations/tulungagung-1.jpg",
-    alt: "Dokumentasi lantai 2 Billions Tulungagung",
-  },
+const venuePhotos = [
+  { src: "/eventvanue/event5.jpg", alt: "Dekorasi meja acara di lantai 2 Billions Coffee" },
+  { src: "/eventvanue/event6.jpg", alt: "Area buffet lantai 2 Billions Coffee untuk acara" },
 ];
+
+const eventProofPhotos = [
+  { src: "/eventvanue/event1.jpg", alt: "Tim dapur Billions Coffee menyiapkan hidangan acara" },
+  { src: "/eventvanue/event2.jpg", alt: "Barista Billions Coffee meraih Juara 1 kompetisi masak" },
+  { src: "/eventvanue/event3.jpg", alt: "Tim Billions Coffee dalam acara kolaborasi brand" },
+  { src: "/eventvanue/event4.jpg", alt: "Komunitas Billions Runners berkumpul di depan Billions Coffee" },
+  { src: "/eventvanue/event7.jpg", alt: "Chef Billions Coffee menyajikan hidangan langsung ke meja tamu" },
+  { src: "/eventvanue/event8.jpg", alt: "Bartender Billions Coffee meracik minuman di booth event" },
+  { src: "/eventvanue/event9.jpg", alt: "Booth mini bar Billions Coffee di acara pernikahan outdoor" },
+];
+
+// Digandakan supaya marquee loop tanpa jeda (seamless).
+const marqueePhotos = [...eventProofPhotos, ...eventProofPhotos];
 
 // Hanya cabang dengan lantai 2 yang bisa disewa untuk event.
 const venueBranchIds = ["madiun", "tulungagung"] as const;
@@ -103,7 +108,7 @@ export function ReservationSplit() {
           </motion.p>
         </motion.div>
 
-        {/* Proof event */}
+        {/* Foto venue */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -111,15 +116,15 @@ export function ReservationSplit() {
           variants={staggerContainer(0.1)}
         >
           <motion.p className="text-eyebrow text-subtle" variants={fadeUp}>
-            Proof Event
+            Venue
           </motion.p>
           <motion.div
             className="mt-4 grid grid-cols-2 gap-3"
             variants={staggerContainer(0.08)}
           >
-            {eventPhotos.map((photo, i) => (
+            {venuePhotos.map((photo) => (
               <motion.div
-                key={`${photo.src}-${i}`}
+                key={photo.src}
                 variants={fadeUp}
                 className="relative aspect-square overflow-hidden rounded-lg border border-border"
               >
@@ -134,6 +139,62 @@ export function ReservationSplit() {
             ))}
           </motion.div>
         </motion.div>
+
+        {/* Event proof — intro teks */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={staggerContainer(0.12)}
+        >
+          <motion.p className="text-eyebrow text-subtle" variants={fadeUp}>
+            Event Proof
+          </motion.p>
+          <motion.h2
+            className="text-display mt-2 text-2xl text-cream md:text-3xl"
+            variants={fadeUp}
+          >
+            Momen yang Sudah Berlangsung
+          </motion.h2>
+          <motion.p
+            className="mt-4 max-w-prose text-sm leading-relaxed text-muted"
+            variants={fadeUp}
+          >
+            Dari kompetisi masak, kolaborasi brand, hingga gathering
+            komunitas — beberapa dokumentasi acara yang sudah berlangsung di
+            Billions Coffee.
+          </motion.p>
+        </motion.div>
+
+        {/* Event proof — galeri marquee looping */}
+        <div className="relative -mx-8 overflow-hidden md:-mx-12">
+          <motion.div
+            className="flex w-max gap-4 px-8 md:px-12"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: eventProofPhotos.length * 4,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {marqueePhotos.map((photo, i) => (
+              <div
+                key={`${photo.src}-${i}`}
+                className="relative aspect-4/3 w-56 shrink-0 overflow-hidden rounded-lg border border-border sm:w-64"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="256px"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </motion.div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-linear-to-r from-background to-transparent md:w-16" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-background to-transparent md:w-16" />
+        </div>
 
         {/* Pilih cabang */}
         <motion.div
@@ -201,17 +262,17 @@ export function ReservationSplit() {
                   <h3 className="text-xl text-cream">Billions {loc.city}</h3>
                   <p className="mt-1 text-sm text-muted">{loc.address}</p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
-                    <a
+                    {/* <a
                       href={`tel:${loc.phone}`}
                       className="text-sm text-muted transition-colors hover:text-cream"
                     >
                       {loc.phoneDisplay}
-                    </a>
+                    </a> */}
                     <a
                       href={waLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md bg-cream px-4 py-2.5 text-eyebrow text-[0.7rem]! text-[#0a0908] transition-opacity hover:opacity-90"
+                      className="inline-flex items-center gap-2 rounded-md bg-cream px-4 py-2.5 text-eyebrow text-[0.7rem]! text-[#0a0908]! transition-opacity hover:opacity-90"
                     >
                       <FaWhatsapp className="size-4" />
                       Tanya via WhatsApp

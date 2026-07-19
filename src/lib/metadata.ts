@@ -4,8 +4,9 @@ import { siteConfig } from "./constants";
 interface GenerateMetadataProps {
   title?: string;
   description?: string;
-  path?: string; // contoh: "/tentang-kami"
+  path?: string; // contoh: "/menu"
   image?: string;
+  keywords?: string[];
   noIndex?: boolean;
 }
 
@@ -14,14 +15,17 @@ export function generateMetadata({
   description = siteConfig.description,
   path = "",
   image = siteConfig.ogImage,
+  keywords,
   noIndex = false,
 }: GenerateMetadataProps = {}): Metadata {
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
   const url = `${siteConfig.url}${path}`;
 
   return {
+    metadataBase: new URL(siteConfig.url),
     title: fullTitle,
     description,
+    keywords,
     alternates: {
       canonical: url,
     },
