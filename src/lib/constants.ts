@@ -7,7 +7,7 @@ export const siteConfig = {
   tagline: "SIMPLY BILLIONS, SIMPLY BETTER",
   description:
     "Sip, savor, and stay a while. Your daily dose of joy, served in every bottle",
-  url: "https://billionscoffee.co.id/", // TODO: ganti domain asli
+  url: "https://billionscoffee.co.id", // TODO: ganti domain asli
   logo: "/logo.png",
   locale: "id_ID",
   ogImage: "/og-image.png", // TODO: siapkan gambar OG 1200x630
@@ -87,7 +87,15 @@ export const heroContent = {
 export const aboutContent = {
   eyebrow: "Billions Coffee",
   body:
-    "Where culinary craftsmanship meets modern elegance. Indulge in the finest coffee, expertly curated to elevate your every moment.",
+    `A place you’ll want to visit again.
+    
+    A warm welcome, a comfortable space,
+    and service that makes you want to come back.
+    
+    At Billions, we’re happy to be part of your moments,
+    whether you’re here to work, catch up with friends, or simply enjoy your time.
+    
+    We look forward to welcoming you soon.`,
   image: "/hero/about1.jpg", // pakai foto hero interior yang sudah ada
   imageAlt: "Interior kedai Billions Coffee",
 } as const;
@@ -121,10 +129,23 @@ export const bestOfTaste = [
 ] as const;
 
 // Section Awards (3 kartu rating bintang di desain).
+// Sudah tidak dipakai (lihat about.tsx — diganti event proof marquee), disimpan
+// kalau-kalau mau dipakai lagi.
 export const awards = [
   { title: "TRIP ADVISOR", subtitle: "Best Coffee House", location: "Prague" },
   { title: "MICHELIN GUIDE", subtitle: "Best Coffee House", location: "Prague" },
   { title: "STAR DINING", subtitle: "Best Coffee House", location: "Prague" },
+] as const;
+
+// Dokumentasi event (dipakai di about.tsx sebagai marquee & reservation-split.tsx).
+export const eventProofPhotos = [
+  { src: "/eventvanue/event1.jpg", alt: "Tim dapur Billions Coffee menyiapkan hidangan acara" },
+  { src: "/eventvanue/event2.jpg", alt: "Barista Billions Coffee meraih Juara 1 kompetisi masak" },
+  { src: "/eventvanue/event3.jpg", alt: "Tim Billions Coffee dalam acara kolaborasi brand" },
+  { src: "/eventvanue/event4.jpg", alt: "Komunitas Billions Runners berkumpul di depan Billions Coffee" },
+  { src: "/eventvanue/event7.jpg", alt: "Chef Billions Coffee menyajikan hidangan langsung ke meja tamu" },
+  { src: "/eventvanue/event8.jpg", alt: "Bartender Billions Coffee meracik minuman di booth event" },
+  { src: "/eventvanue/event9.jpg", alt: "Booth mini bar Billions Coffee di acara pernikahan outdoor" },
 ] as const;
 
 // Section Testimonials (ulasan pelanggan, 3 kartu senada dengan grid Awards).
@@ -161,7 +182,7 @@ export const locations = [
   {
     id: "kediri",
     city: "Kediri",
-    image: "/locations/kediri.jpg",
+    image: "/locations/kediri-1.png",
     address:
       "Jl. Hasanudin No.14, Balowerti, Kec. Kota, Kota Kediri, Jawa Timur 64121",
     addressRegion: "Jawa Timur",
@@ -176,7 +197,7 @@ export const locations = [
       opens: "09:00",
       closes: "22:00",
     },
-    mapsUrl: "https://maps.app.goo.gl/F2enCqWB7q12gpMz8",
+    mapsUrl: "https://maps.app.goo.gl/1iqhJXgYXgcLddpPA",
     mapsQuery: "Billions+Coffee+Kediri",
     gofoodUrl: "https://gofood.link/a/KvfvZ2J",
     grabfoodUrl: "https://r.grab.com/g/6-20260718_165725_E067549D29184FD0A3DE5FDFBA716CC9_MEXMPS-6-C7TKJ73UN3UBEX",
@@ -199,9 +220,9 @@ export const locations = [
       opens: "09:00",
       closes: "22:00",
     },
-    mapsUrl: "https://maps.app.goo.gl/PQDYvfnHCxjxTeTi7",
+    mapsUrl: "https://maps.app.goo.gl/M6xWAFBf5Tjs4qzE9",
     mapsQuery: "Billions+Coffee+Tulungagung",
-    gofoodUrl: "⁠https://gofood.link/a/QyBcLZJ",
+    gofoodUrl: "https://gofood.link/a/QyBcLZJ",
     grabfoodUrl: "https://r.grab.com/g/6-20260718_165822_E067549D29184FD0A3DE5FDFBA716CC9_MEXMPS-6-C7JUBCAEV8LCTE",
   },
   {
@@ -222,7 +243,7 @@ export const locations = [
       opens: "09:00",
       closes: "22:00",
     },
-    mapsUrl: "https://maps.google.com/?q=Madiun,East+Java",
+    mapsUrl: "https://maps.app.goo.gl/mu5AarMs939oc2aeA",
     mapsQuery: "Billions+Coffee+Madiun",
     gofoodUrl: "",
     grabfoodUrl: "", // TODO: ganti link Grab asli

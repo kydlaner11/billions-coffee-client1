@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa6";
-import { locations } from "@/lib/constants";
+import { locations, eventProofPhotos } from "@/lib/constants";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
 const heroImage = {
@@ -15,16 +15,6 @@ const heroImage = {
 const venuePhotos = [
   { src: "/eventvanue/event5.jpg", alt: "Dekorasi meja acara di lantai 2 Billions Coffee" },
   { src: "/eventvanue/event6.jpg", alt: "Area buffet lantai 2 Billions Coffee untuk acara" },
-];
-
-const eventProofPhotos = [
-  { src: "/eventvanue/event1.jpg", alt: "Tim dapur Billions Coffee menyiapkan hidangan acara" },
-  { src: "/eventvanue/event2.jpg", alt: "Barista Billions Coffee meraih Juara 1 kompetisi masak" },
-  { src: "/eventvanue/event3.jpg", alt: "Tim Billions Coffee dalam acara kolaborasi brand" },
-  { src: "/eventvanue/event4.jpg", alt: "Komunitas Billions Runners berkumpul di depan Billions Coffee" },
-  { src: "/eventvanue/event7.jpg", alt: "Chef Billions Coffee menyajikan hidangan langsung ke meja tamu" },
-  { src: "/eventvanue/event8.jpg", alt: "Bartender Billions Coffee meracik minuman di booth event" },
-  { src: "/eventvanue/event9.jpg", alt: "Booth mini bar Billions Coffee di acara pernikahan outdoor" },
 ];
 
 // Digandakan supaya marquee loop tanpa jeda (seamless).
