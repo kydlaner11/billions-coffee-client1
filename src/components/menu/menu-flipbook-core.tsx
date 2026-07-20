@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 // Stylesheet resmi dari engine StPageFlip (bukan react-pageflip) — wajib di-import
 // manual karena react-pageflip tidak membundelnya. Tanpa ini, .stf__parent kehilangan
@@ -15,10 +15,54 @@ import { menuPages } from "@/lib/menu-data";
 
 type FlipEvent = { data: number };
 
+// Jumlah halaman di kiri & kanan posisi sekarang yang dimuat eager. react-pageflip
+// men-display:none semua halaman di luar spread aktif, jadi lazy-loading bawaan
+// next/image tidak pernah terpicu untuk halaman yang belum pernah aktif — window
+// ini yang memastikan halaman di sekitar posisi user sudah siap sebelum di-flip ke.
+const EAGER_WINDOW = 3;
+
+// react-pageflip menghitung tinggi murni dari lebar × rasio (width/height di
+// bawah), bukan dari tinggi kontainer — jadi ukuran "desktop" yang lebih besar
+// gampang lebih tinggi daripada viewport ponsel dan memaksa halaman /menu
+// scroll. Profil "mobile" ini sengaja lebih kecil supaya muat dalam satu layar
+// (lihat menu-split.tsx yang mengunci section ke h-dvh di breakpoint ini).
+const SIZE_DESKTOP = {
+  width: 340,
+  height: 420,
+  minWidth: 280,
+  maxWidth: 500,
+  minHeight: 346,
+  maxHeight: 618,
+} as const;
+const SIZE_MOBILE = {
+  width: 260,
+  height: 322,
+  minWidth: 220,
+  maxWidth: 340,
+  minHeight: 272,
+  maxHeight: 420,
+} as const;
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  return isMobile;
+}
+
 export function MenuFlipbookCore() {
   const flipBookRef = useRef<{ pageFlip: () => { flipPrev: () => void; flipNext: () => void } } | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const isMobile = useIsMobile();
+  const size = isMobile ? SIZE_MOBILE : SIZE_DESKTOP;
 
   const unlockedRef = useRef(false);
 
@@ -58,20 +102,21 @@ export function MenuFlipbookCore() {
 
   return (
     <div
-      className="flex w-full flex-col items-center gap-4"
+      className="flex w-full min-h-0 flex-1 flex-col items-center justify-center gap-2 md:flex-none md:gap-4"
       onPointerDown={unlockAudio}
     >
       <audio ref={audioRef} src="/sounds/page-flip.mp3" preload="auto" />
 
-      <div className="mx-auto w-full max-w-100 sm:max-w-110 lg:max-w-125">
+      <div className="mx-auto w-full min-h-0 flex-1 max-w-100 sm:max-w-110 md:flex-none lg:max-w-125">
         <HTMLFlipBook
-          width={340}
-          height={420}
+          key={isMobile ? "mobile" : "desktop"}
+          width={size.width}
+          height={size.height}
           size="stretch"
-          minWidth={280}
-          maxWidth={500}
-          minHeight={346}
-          maxHeight={618}
+          minWidth={size.minWidth}
+          maxWidth={size.maxWidth}
+          minHeight={size.minHeight}
+          maxHeight={size.maxHeight}
           startPage={0}
           drawShadow
           flippingTime={900}
@@ -99,12 +144,13 @@ export function MenuFlipbookCore() {
                 i === 0 || i === menuPages.length - 1 ? "hard" : "soft"
               }
               priority={i === 0}
+              eager={Math.abs(i - currentPage) <= EAGER_WINDOW}
             />
           ))}
         </HTMLFlipBook>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-2 md:gap-4">
         <Button
           variant="outline"
           size="icon"

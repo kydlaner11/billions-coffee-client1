@@ -214,9 +214,9 @@ export const locations = [
     phoneDisplay: "0812 4678 0540",
     waNumber: "6281246780540",
     waMsg: "Halo Billions Tulungagung, saya ingin bertanya dan reservasi.",
-    hours: "Tue – Sun: 09:00 – 22:00",
+    hours: "Mon – Sun: 09:00 – 22:00",
     openingHours: {
-      days: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       opens: "09:00",
       closes: "22:00",
     },
