@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Dialog } from "@base-ui/react/dialog";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa6";
+import { BookOpen, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { locations, eventProofPhotos } from "@/lib/constants";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
@@ -20,9 +22,10 @@ const venuePhotos = [
 // Digandakan supaya marquee loop tanpa jeda (seamless).
 const marqueePhotos = [...eventProofPhotos, ...eventProofPhotos];
 
-// Hanya cabang dengan lantai 2 yang bisa disewa untuk event.
-const venueBranchIds = ["madiun", "tulungagung"] as const;
-const venueLocations = venueBranchIds
+// Kediri tanpa lantai 2 (cuma menu ala carte biasa), Madiun & Tulungagung
+// punya lantai 2 yang bisa disewa untuk event.
+const branchIds = ["kediri", "madiun", "tulungagung"] as const;
+const branches = branchIds
   .map((id) => locations.find((l) => l.id === id))
   .filter((l): l is NonNullable<typeof l> => Boolean(l));
 
@@ -30,9 +33,103 @@ function eventWaMessage(city: string) {
   return `Halo Billions ${city}, saya ingin tanya-tanya soal sewa lantai 2 untuk event/acara.`;
 }
 
+// Carousel lightbox untuk menu ala carte Kediri — pakai Dialog primitive yang
+// sama dengan sheet navbar (fokus-trap, Escape, klik-luar-close sudah gratis).
+function MenuCarouselModal({
+  open,
+  onOpenChange,
+  photos,
+  city,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  photos: readonly { src: string; alt: string }[];
+  city: string;
+}) {
+  const [index, setIndex] = useState(0);
+  const prev = () => setIndex((i) => (i - 1 + photos.length) % photos.length);
+  const next = () => setIndex((i) => (i + 1) % photos.length);
+
+  // Trigger-nya sudah disembunyikan kalau cabang belum punya foto menu, tapi
+  // Dialog.Popup tetap dirender di tree (cuma disembunyikan via CSS saat
+  // closed) — tanpa guard ini, photos[index].src bisa crash saat prerender.
+  if (photos.length === 0) return null;
+
+  return (
+    <Dialog.Root
+      open={open}
+      onOpenChange={(isOpen) => {
+        onOpenChange(isOpen);
+        if (!isOpen) setIndex(0);
+      }}
+    >
+      <Dialog.Portal>
+        <Dialog.Backdrop className="fixed inset-0 z-100 bg-background/90 backdrop-blur-xs transition-opacity data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="fixed inset-0 z-100 flex items-center justify-center p-4 transition-opacity data-ending-style:opacity-0 data-starting-style:opacity-0">
+          <Dialog.Title className="sr-only">
+            Menu Ala Carte Billions {city}
+          </Dialog.Title>
+          <div className="relative flex w-full max-w-100 flex-col items-center gap-4">
+            <Dialog.Close
+              aria-label="Tutup"
+              className="absolute -top-11 right-0 text-subtle transition-colors hover:text-cream"
+            >
+              <X className="size-6" />
+            </Dialog.Close>
+
+            <div className="relative aspect-3/4 w-full overflow-hidden rounded-lg border border-border bg-surface">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -24 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={photos[index].src}
+                    alt={photos[index].alt}
+                    fill
+                    sizes="(max-width: 768px) 90vw, 400px"
+                    className="object-contain"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Halaman sebelumnya"
+                className="rounded-md border border-border p-2 text-subtle transition-colors hover:border-cream/40 hover:text-cream"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+              <span className="text-eyebrow text-subtle">
+                {index + 1} / {photos.length}
+              </span>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Halaman berikutnya"
+                className="rounded-md border border-border p-2 text-subtle transition-colors hover:border-cream/40 hover:text-cream"
+              >
+                <ChevronRight className="size-4" />
+              </button>
+            </div>
+          </div>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+
 export function ReservationSplit() {
-  const [active, setActive] = useState(0);
-  const loc = venueLocations[active];
+  const [active, setActive] = useState(1); // default: Madiun (index 0 = Kediri)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const loc = branches[active];
   const waLink = loc
     ? `https://wa.me/${loc.waNumber}?text=${encodeURIComponent(
         eventWaMessage(loc.city)
@@ -197,10 +294,10 @@ export function ReservationSplit() {
             Pilih Cabang
           </motion.p>
           <motion.div
-            className="mt-4 grid grid-cols-2 gap-3"
+            className="mt-4 grid grid-cols-3 gap-3"
             variants={staggerContainer(0.1)}
           >
-            {venueLocations.map((item, i) => {
+            {branches.map((item, i) => {
               const isActive = i === active;
               return (
                 <motion.button
@@ -224,12 +321,17 @@ export function ReservationSplit() {
                     src={item.image}
                     alt={`Billions ${item.city}`}
                     fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 1024px) 33vw, 16vw"
                     className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
                       isActive ? "" : "opacity-70"
                     }`}
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent" />
+                  {item.id === "kediri" && (
+                    <span className="absolute top-2 left-2 rounded-full bg-cream/90 px-1.5 py-0.5 text-[0.55rem] font-medium whitespace-nowrap uppercase tracking-wide text-[#0a0908]">
+                      Ala Carte Only
+                    </span>
+                  )}
                   <span className="absolute bottom-3 left-3 text-eyebrow text-sm! text-cream">
                     {item.city}
                   </span>
@@ -252,12 +354,6 @@ export function ReservationSplit() {
                   <h3 className="text-xl text-cream">Billions {loc.city}</h3>
                   <p className="mt-1 text-sm text-muted">{loc.address}</p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
-                    {/* <a
-                      href={`tel:${loc.phone}`}
-                      className="text-sm text-muted transition-colors hover:text-cream"
-                    >
-                      {loc.phoneDisplay}
-                    </a> */}
                     <a
                       href={waLink}
                       target="_blank"
@@ -267,6 +363,16 @@ export function ReservationSplit() {
                       <FaWhatsapp className="size-4" />
                       Tanya via WhatsApp
                     </a>
+                    {loc.menuPhotos.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setMenuOpen(true)}
+                        className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2.5 text-eyebrow text-[0.7rem]! text-foreground transition-colors hover:border-cream/40 hover:text-cream"
+                      >
+                        <BookOpen className="size-4" />
+                        Lihat Menu
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -274,6 +380,13 @@ export function ReservationSplit() {
           </div>
         </motion.div>
       </div>
+
+      <MenuCarouselModal
+        open={menuOpen}
+        onOpenChange={setMenuOpen}
+        photos={loc?.menuPhotos ?? []}
+        city={loc?.city ?? ""}
+      />
     </section>
   );
 }

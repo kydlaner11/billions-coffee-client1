@@ -55,16 +55,14 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${forum.variable}`}
     >
       <body className="antialiased">
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }}
-        />
+        {[organizationSchema(), websiteSchema()].map((data, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+          />
+        ))}
         <SplashScreen />
         <Navbar />
         {children}

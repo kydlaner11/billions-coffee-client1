@@ -201,6 +201,13 @@ export const locations = [
     mapsQuery: "Billions+Coffee+Kediri",
     gofoodUrl: "https://gofood.link/a/KvfvZ2J",
     grabfoodUrl: "https://r.grab.com/g/6-20260718_165725_E067549D29184FD0A3DE5FDFBA716CC9_MEXMPS-6-C7TKJ73UN3UBEX",
+    // TODO: tambahkan file /public/menu/reservation/1.png dst — sesuaikan
+    // jumlah entry kalau foto yang tersedia lebih/kurang dari 4.
+    menuPhotos: [
+      { src: "/menu/reservation/1.png", alt: "Menu ala carte Billions Coffee Kediri halaman 1" },
+      { src: "/menu/reservation/2.png", alt: "Menu ala carte Billions Coffee Kediri halaman 2" },
+      { src: "/menu/reservation/3.png", alt: "Menu ala carte Billions Coffee Kediri halaman 3" },
+    ],
   },
   {
     id: "tulungagung",
@@ -224,6 +231,13 @@ export const locations = [
     mapsQuery: "Billions+Coffee+Tulungagung",
     gofoodUrl: "https://gofood.link/a/QyBcLZJ",
     grabfoodUrl: "https://r.grab.com/g/6-20260718_165822_E067549D29184FD0A3DE5FDFBA716CC9_MEXMPS-6-C7JUBCAEV8LCTE",
+    // TODO: tambahkan file /public/menu/reservation/tulungagung-1.png dst.
+    menuPhotos: [
+      // { src: "/menu/reservation/tulungagung-1.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 1" },
+      // { src: "/menu/reservation/tulungagung-2.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 2" },
+      // { src: "/menu/reservation/tulungagung-3.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 3" },
+      // { src: "/menu/reservation/tulungagung-4.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 4" },
+    ],
   },
   {
     id: "madiun",
@@ -247,6 +261,13 @@ export const locations = [
     mapsQuery: "Billions+Coffee+Madiun",
     gofoodUrl: "",
     grabfoodUrl: "", // TODO: ganti link Grab asli
+    // TODO: tambahkan file /public/menu/reservation/madiun-1.png dst.
+    menuPhotos: [
+      // { src: "/menu/reservation/madiun-1.png", alt: "Menu ala carte Billions Coffee Madiun halaman 1" },
+      // { src: "/menu/reservation/madiun-2.png", alt: "Menu ala carte Billions Coffee Madiun halaman 2" },
+      // { src: "/menu/reservation/madiun-3.png", alt: "Menu ala carte Billions Coffee Madiun halaman 3" },
+      // { src: "/menu/reservation/madiun-4.png", alt: "Menu ala carte Billions Coffee Madiun halaman 4" },
+    ],
   },
 ] as const;
 
