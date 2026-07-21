@@ -233,10 +233,9 @@ export const locations = [
     grabfoodUrl: "https://r.grab.com/g/6-20260718_165822_E067549D29184FD0A3DE5FDFBA716CC9_MEXMPS-6-C7JUBCAEV8LCTE",
     // TODO: tambahkan file /public/menu/reservation/tulungagung-1.png dst.
     menuPhotos: [
-      // { src: "/menu/reservation/tulungagung-1.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 1" },
-      // { src: "/menu/reservation/tulungagung-2.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 2" },
-      // { src: "/menu/reservation/tulungagung-3.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 3" },
-      // { src: "/menu/reservation/tulungagung-4.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 4" },
+      { src: "/menu/reservation/1.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 1" },
+      { src: "/menu/reservation/2.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 2" },
+      { src: "/menu/reservation/3.png", alt: "Menu ala carte Billions Coffee Tulungagung halaman 3" },
     ],
   },
   {
@@ -263,10 +262,9 @@ export const locations = [
     grabfoodUrl: "", // TODO: ganti link Grab asli
     // TODO: tambahkan file /public/menu/reservation/madiun-1.png dst.
     menuPhotos: [
-      // { src: "/menu/reservation/madiun-1.png", alt: "Menu ala carte Billions Coffee Madiun halaman 1" },
-      // { src: "/menu/reservation/madiun-2.png", alt: "Menu ala carte Billions Coffee Madiun halaman 2" },
-      // { src: "/menu/reservation/madiun-3.png", alt: "Menu ala carte Billions Coffee Madiun halaman 3" },
-      // { src: "/menu/reservation/madiun-4.png", alt: "Menu ala carte Billions Coffee Madiun halaman 4" },
+      { src: "/menu/reservation/1.png", alt: "Menu ala carte Billions Coffee Madiun halaman 1" },
+      { src: "/menu/reservation/2.png", alt: "Menu ala carte Billions Coffee Madiun halaman 2" },
+      { src: "/menu/reservation/3.png", alt: "Menu ala carte Billions Coffee Madiun halaman 3" },
     ],
   },
 ] as const;
