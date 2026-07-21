@@ -18,7 +18,7 @@ export function MenuSplit() {
     // alur normal (scroll biasa / sticky split) mulai md:.
     <section className="flex h-dvh flex-col overflow-hidden md:h-auto md:overflow-visible lg:grid lg:grid-cols-2">
       {/* Kiri: foto + judul, sticky mengikuti scroll di desktop */}
-      <div className="relative h-28 shrink-0 overflow-hidden sm:h-36 md:h-125 md:shrink lg:sticky lg:top-0 lg:h-svh">
+      <div className="relative h-44 shrink-0 overflow-hidden sm:h-48 md:h-125 md:shrink lg:sticky lg:top-0 lg:h-svh">
         <Image
           src={menuHeroImage.src}
           alt={menuHeroImage.alt}

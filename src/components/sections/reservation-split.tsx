@@ -29,8 +29,12 @@ const branches = branchIds
   .map((id) => locations.find((l) => l.id === id))
   .filter((l): l is NonNullable<typeof l> => Boolean(l));
 
-function eventWaMessage(city: string) {
-  return `Halo Billions ${city}, saya ingin tanya-tanya soal sewa lantai 2 untuk event/acara.`;
+// Kediri tidak punya lantai 2, jadi pesannya cuma soal event/acara secara
+// umum — bukan "sewa lantai 2" yang cuma berlaku di Madiun & Tulungagung.
+function eventWaMessage(city: string, hasVenueFloor: boolean) {
+  return hasVenueFloor
+    ? `Halo Billions ${city}, saya ingin tanya-tanya soal sewa lantai 2 untuk event/acara.`
+    : `Halo Billions ${city}, saya ingin tanya-tanya soal event/acara.`;
 }
 
 // Carousel lightbox untuk menu ala carte Kediri — pakai Dialog primitive yang
@@ -132,7 +136,7 @@ export function ReservationSplit() {
   const loc = branches[active];
   const waLink = loc
     ? `https://wa.me/${loc.waNumber}?text=${encodeURIComponent(
-        eventWaMessage(loc.city)
+        eventWaMessage(loc.city, loc.id !== "kediri")
       )}`
     : "#";
 
