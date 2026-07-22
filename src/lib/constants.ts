@@ -204,9 +204,9 @@ export const locations = [
     // TODO: tambahkan file /public/menu/reservation/1.png dst — sesuaikan
     // jumlah entry kalau foto yang tersedia lebih/kurang dari 4.
     menuPhotos: [
-      { src: "/menu/reservation/1.png", alt: "Menu ala carte Billions Coffee Kediri halaman 1" },
-      { src: "/menu/reservation/2.png", alt: "Menu ala carte Billions Coffee Kediri halaman 2" },
-      { src: "/menu/reservation/3.png", alt: "Menu ala carte Billions Coffee Kediri halaman 3" },
+      // { src: "/menu/reservation/1.png", alt: "Menu ala carte Billions Coffee Kediri halaman 1" },
+      // { src: "/menu/reservation/2.png", alt: "Menu ala carte Billions Coffee Kediri halaman 2" },
+      // { src: "/menu/reservation/3.png", alt: "Menu ala carte Billions Coffee Kediri halaman 3" },
     ],
   },
   {
