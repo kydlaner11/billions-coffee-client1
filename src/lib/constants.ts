@@ -112,8 +112,8 @@ export const bestOfTaste = [
   },
   {
     image: "/menu/dish2.jpg",
-    alt: "Tenderlon Steak Billions",
-    name: "Tenderlon Steak",
+    alt: "Tenderloin Steak Billions",
+    name: "Tenderloin Steak",
     description:
       "Sebuah paduan kelembutan dari potongan daging berkualifas yang dimasak sempurna untuk menghasilkan teksture lembut dan juicy dalam setiap gigitan",
     href: "/menu",
