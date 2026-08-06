@@ -7,11 +7,11 @@ export type MenuPageImage = {
   src: string;
   alt: string;
 };
-
-const swipePageNumbers = Array.from({ length: 31 }, (_, i) => i + 1).filter(
-  (n) => n !== 5
+ 
+const swipePageNumbers = Array.from({ length: 34 }, (_, i) => i + 1).filter(
+  (n) => n !== 4 && n !== 5
 );
-
+ 
 export const menuPages: readonly MenuPageImage[] = swipePageNumbers.map(
   (n) => ({
     id: `page-${n}`,
