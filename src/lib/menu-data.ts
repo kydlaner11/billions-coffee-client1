@@ -1,7 +1,3 @@
-// Billions Coffee — data menu untuk flip-book.
-// Sumber: public/menu/swipe/1.jpg .. 31.jpg (halaman menu asli, hasil export desain).
-// Catatan: file "5.jpg" belum ada di public/menu/swipe, jadi nomor itu dilewati.
-
 export type MenuPageImage = {
   id: string;
   src: string;
@@ -9,13 +5,21 @@ export type MenuPageImage = {
 };
  
 const swipePageNumbers = Array.from({ length: 34 }, (_, i) => i + 1).filter(
-  (n) => n !== 4 && n !== 5
+  (n) => n !== 5
 );
+ 
+// Cache-busting: ganti nilai ini (mis. ke tanggal deploy) SETIAP KALI ada foto
+// yang kontennya diganti tapi nama filenya reused (mis. "6.jpg" lama ditimpa
+// dengan isi baru). Tanpa ini, browser yang pernah buka situs sebelumnya akan
+// terus menampilkan gambar lama dari cache-nya sendiri karena URL-nya identik
+// — baru hilang kalau user hard refresh atau buka incognito. Menaikkan versi
+// di sini mengubah URL (?v=...) sehingga dianggap resource baru oleh browser.
+const ASSET_VERSION = "20260808";
  
 export const menuPages: readonly MenuPageImage[] = swipePageNumbers.map(
   (n) => ({
     id: `page-${n}`,
-    src: `/menu/swipe/${n}.jpg`,
+    src: `/menu/swipe/${n}.jpg?v=${ASSET_VERSION}`,
     alt: `Halaman menu Billions Coffee ${n}`,
   })
 );
