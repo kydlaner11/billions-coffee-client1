@@ -42,9 +42,8 @@ export const contactInfo = {
 } as const;
 
 export const socialLinks = [
-  { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-  { label: "Facebook", href: "https://facebook.com", icon: "facebook" },
-  { label: "Twitter", href: "https://twitter.com", icon: "twitter" },
+  { label: "Instagram", href: "https://www.instagram.com/billions.coffee", icon: "instagram" },
+  { label: "Tiktok", href: "https://www.tiktok.com/@billions.coffee", icon: "tiktok" },
 ] as const;
 
 export const footerLinks = [

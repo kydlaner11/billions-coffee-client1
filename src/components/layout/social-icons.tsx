@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaFacebookF, FaXTwitter, FaTiktok } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { socialLinks } from "@/lib/constants";
 
@@ -9,6 +9,7 @@ const iconMap: Record<string, IconType> = {
   instagram: FaInstagram,
   facebook: FaFacebookF,
   twitter: FaXTwitter,
+  tiktok: FaTiktok,
 };
 
 export function SocialIcons({ className = "" }: { className?: string }) {
