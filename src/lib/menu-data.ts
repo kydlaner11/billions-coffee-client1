@@ -4,8 +4,8 @@ export type MenuPageImage = {
   alt: string;
 };
  
-const swipePageNumbers = Array.from({ length: 34 }, (_, i) => i + 1).filter(
-  (n) => n !== 5
+const swipePageNumbers = Array.from({ length: 29 }, (_, i) => i + 1).filter(
+  (n) => n !== 4 && n !== 5
 );
  
 // Cache-busting: ganti nilai ini (mis. ke tanggal deploy) SETIAP KALI ada foto
@@ -14,7 +14,7 @@ const swipePageNumbers = Array.from({ length: 34 }, (_, i) => i + 1).filter(
 // terus menampilkan gambar lama dari cache-nya sendiri karena URL-nya identik
 // — baru hilang kalau user hard refresh atau buka incognito. Menaikkan versi
 // di sini mengubah URL (?v=...) sehingga dianggap resource baru oleh browser.
-const ASSET_VERSION = "20260808";
+const ASSET_VERSION = "20260907";
  
 export const menuPages: readonly MenuPageImage[] = swipePageNumbers.map(
   (n) => ({
