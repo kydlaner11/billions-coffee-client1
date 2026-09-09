@@ -1,4 +1,5 @@
 import type { Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono, Forum } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
@@ -54,6 +55,21 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${forum.variable}`}
     >
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EDSYF1PT2Y"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EDSYF1PT2Y');
+          `}
+        </Script>
+      </head>
       <body className="antialiased">
         {[organizationSchema(), websiteSchema()].map((data, i) => (
           <script
