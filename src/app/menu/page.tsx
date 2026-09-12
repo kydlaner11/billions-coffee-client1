@@ -2,10 +2,19 @@ import { generateMetadata } from "@/lib/metadata";
 import { MenuSplit } from "@/components/sections/menu-split";
 
 export const metadata = generateMetadata({
-  title: "Menu",
+  title: "Daftar Menu & Harga Promo Terbaru", 
+  // Hasil: "Daftar Menu & Harga Promo Terbaru | Billions Coffee"
   description:
-    "Jelajahi menu Billions Coffee: signature coffee, iced & blended drinks, tenderloin steak, hingga sweet finish. Tersedia di cabang Kediri, Tulungagung, dan Madiun.",
-  keywords: ["menu Billions Coffee", "menu kopi Kediri", "menu cafe Tulungagung", "steak Madiun"],
+    "Lihat daftar menu Billions Coffee Kediri, Tulungagung, dan Madiun. Nikmati signature coffee, makanan resto lezat, dengan harga yang terjangkau. Cek menunya di sini!",
+  keywords: [
+    "billions tulungagung menu",
+    "menu billions cafe kediri",
+    "harga menu billions coffee",
+    "cafe murah madiun",
+    "cafe murah tulungagung",
+    "resto tulungagung",
+    "makanan enak di madiun"
+  ],
   path: "/menu",
 });
 

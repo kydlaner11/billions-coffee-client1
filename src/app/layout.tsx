@@ -28,14 +28,19 @@ const forum = Forum({
 });
 
 export const metadata = generateMetadata({
+  title: "Coffee Shop & Tempat Nongkrong Estetik di Jatim", 
   description:
-    "Kedai kopi & resto dengan cita rasa premium di Kediri, Tulungagung, dan Madiun. Nikmati signature coffee, steak, dan menu andalan Billions Coffee.",
+    "Cari coffee shop terdekat? Billions Coffee adalah rekomendasi tempat ngopi & resto estetik di Madiun, Tulungagung, dan Kediri. Nyaman untuk nongkrong & acara!",
   keywords: [
     "Billions Coffee",
-    "kedai kopi Kediri",
-    "coffee shop Tulungagung",
-    "cafe Madiun",
-    "kopi Jawa Timur",
+    "coffee shop terdekat",
+    "tempat ngopi terdekat",
+    "cafe terdekat dari lokasi saya",
+    "tempat nongkrong estetik",
+    "rekomendasi cafe madiun",
+    "resto tulungagung",
+    "tempat ngopi di madiun",
+    "cafe di tulungagung kota"
   ],
   path: "/",
 });

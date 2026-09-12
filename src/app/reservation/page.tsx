@@ -2,14 +2,20 @@ import { generateMetadata } from "@/lib/metadata";
 import { ReservationSplit } from "@/components/sections/reservation-split";
 
 export const metadata = generateMetadata({
-  title: "Venue & Event",
+  title: "Sewa Tempat Event, Meeting & Gathering", 
+  // Hasil render: "Sewa Tempat Event, Meeting & Gathering | Billions Coffee"
   description:
-    "Sewa lantai 2 Billions Coffee Madiun dan Tulungagung untuk gathering, ulang tahun, rapat, hingga acara privat lainnya. Suasana nyaman dengan kapasitas yang pas.",
+    "Cari tempat untuk acara privat? Sewa lantai 2 Billions Coffee Madiun & Tulungagung untuk gathering, meeting, hingga ulang tahun. Suasana estetik & nyaman. Cek info reservasi!",
   keywords: [
     "sewa venue Madiun",
     "sewa tempat event Tulungagung",
-    "gathering Billions Coffee",
-    "venue acara Jawa Timur",
+    "tempat meeting di Madiun",
+    "cafe untuk ulang tahun Tulungagung",
+    "tempat gathering Madiun",
+    "private area cafe Tulungagung",
+    "reservasi Billions Coffee",
+    "cafe madiun estetik", // Mengambil data dari GSC sebelumnya
+    "resto tulungagung" // Mengambil data dari GSC sebelumnya
   ],
   path: "/reservation",
 });
