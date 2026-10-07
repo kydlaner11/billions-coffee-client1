@@ -39,6 +39,7 @@
     "react-pageflip": {
       "react": "$react",
       "react-dom": "$react-dom"
-    }
+    },
+    "proxy-addr": "^2.0.8"
   }
 }
